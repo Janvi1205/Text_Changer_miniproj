@@ -12,7 +12,7 @@ Style Controls - Apply bold or italic formatting with a single click<br>
 Copy to Clipboard - Instantly copy your styled text for use elsewhere<br>
 
 🚀 Demo
-Try out the live demo:https://janvi1205.github.io/Text_Changer_miniproj<br>
+Try out the live demo:https://janvi1205.github.io/Text_Styler_miniproj<br>
 
 
 🛠️ Technologies Used
