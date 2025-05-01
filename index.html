@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Styler</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="header">
+            <h1>Text Styler</h1>
+            <p>Create beautifully styled text with our easy-to-use editor</p>
+        </div>
+
+        <div class="card">
+
+
+            <div class="control-group">
+                <div class="control-item">
+                    <label class="control-label">Font Style</label>
+                    <select onchange="stylechange()" name="" id="style">
+                        <option>Normal</option>
+                        <option value="Italic">Italic</option>
+                        <option value="Bold">Bold</option>
+                    </select>
+                </div>
+
+                <div class="control-item">
+                    <label class="control-label">Font Family</label>
+                    <select id="fontFamily" onchange="fontfamily()">
+                        <option value="'Segoe UI', sans-serif">Default</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Times New Roman', serif">Times New Roman</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value="Impact, sans-serif">Impact</option>
+                        <option value="'Comic Sans MS', cursive">Comic Sans</option>
+                        <option value="cursive">Cursive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-item">
+                    <label class="control-label">Text Color</label>
+                    <div class="color-picker-wrapper">
+                        <div id="colorPreview" class="color-preview" style="background-color: #ffffff"></div>
+                        <span style="font-size: 20px;" class="color-label">Select color</span>
+                        <input style="margin-left: 0px;" onchange="colorchoosen()" style="margin-left: 90px;"
+                            type="color" name="" id="color">
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div style="font-family: 'Times New Roman', Times, serif;" class="control-group">
+                <div class="control-item">
+                    <label class="control-label">Font Size <span id="fontSizeValue"></label>
+                    <div class="slider-container">
+                        <input onchange="font()" type="range" id="fontSizeSlider" class="slider" min="1" max="12"
+                            value="4" oninput="changeFontSize()">
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="textarea-container">
+                <textarea id="data" placeholder="Enter your text here..."></textarea>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button onclick="copyText()"
+                    style="background-color: var(--primary-color); color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3">
+                        </path>
+                    </svg>
+                    Copy Text
+                </button>
+            </div>
+
+        <!-- script part -->
+        <script>
+        
+        function changeFontSize() {
+            let fontSizeValue = document.getElementById("fontSizeSlider").value;
+            let fontSizeInPixels = fontSizeValue * 5 + "px";  // Adjusting range to pixel size
+            document.getElementById("data").style.fontSize = fontSizeInPixels;
+        }
+        
+        function colorchoosen() {
+            let choosencolor = document.getElementById("color").value;
+            document.getElementById("data").style.color = choosencolor;   /*choosencolor will not be in quotes*/
+        
+        
+        }
+        
+        function stylechange() {
+            let choosenstyle = document.getElementById("style").value;
+            if (choosenstyle == "Bold")  /*bold was written in quotes as value is string type*/ {
+                document.getElementById("data").style.fontWeight = "bold";
+                document.getElementById("data").style.fontStyle = "normal";
+            }
+            else if (choosenstyle == "Italic") {
+                document.getElementById("data").style.fontStyle = "italic";
+                document.getElementById("data").style.fontWeight = "normal";
+            }
+            else {
+                document.getElementById("data").style.fontStyle = "normal";
+            }
+        
+        }
+        
+        
+        
+        function fontfamily() {
+            let selectedFontFamily = document.getElementById("fontFamily").value;
+            document.getElementById("data").style.fontFamily = selectedFontFamily;
+        }
+        
+        function copyText() {
+            // Get the text from the textarea
+            const textToCopy = document.getElementById("data").value;
+        
+            // Use the Clipboard API to copy text
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    // Provide feedback to the user
+                    alert("Text copied to clipboard!");
+                })
+                .catch((err) => {
+                    // Handle errors
+                    console.error("Failed to copy text: ", err);
+                    alert("Could not copy text. Please try again.");
+                });
+        }
+        </script>
+    </body>    
+</html>        
+            
+
